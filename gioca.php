@@ -39,12 +39,12 @@ if(isset($_POST['inputName'])){
         <?php
         foreach($set as $pin){
             ?>
-            <a href="#" style="color: <?php echo $pin->getColor(); ?>; font-size: 4em;"><?php echo $pin; ?></a>
+            <a href="#" style="color: <?php echo $pin->getColor(); ?>; font-size: 4em;" onclick="scriviPin(<?php echo $pin->getValue(); ?>)"><?php echo $pin; ?></a>
             <?php 
         }
         ?>
     </div>
-    <div>
+    <div class="well well-sm">
         <table class="table">
             <thead>
                 <tr>
@@ -68,18 +68,8 @@ if(isset($_POST['inputName'])){
                         <?php
                             for($j = 0; $j < $width; $j++){
                                 ?>
-                                <td>
-                                    <select class="form-control">
-                                        <?php 
-                                            foreach($set as $pin){
-                                                ?>
-                                                <option style="color: <?php echo $pin->getColor() ?>">
-                                                    <?php echo $pin_B; ?>
-                                                </option>
-                                            <?php
-                                            };
-                                        ?>     
-                                    </select>
+                                <td id="td_<?php echo $l . '_' . $j; ?>">
+                                   
                                 </td>
                                 <?php
                             }
@@ -100,3 +90,10 @@ if(isset($_POST['inputName'])){
 
 </body>
 </html>
+
+<script>
+    function scriviPin(Pin){
+        var td = document.getElementById("td_1_0");
+        td.innerHTML = Pin;
+    }
+</script>

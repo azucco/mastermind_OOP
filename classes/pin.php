@@ -8,6 +8,9 @@ class Pin {
     public function getColor(){
         return $this->color;
     }
+    public function getValue(){
+        return $this->value;
+    }
     public function __construct($color, $value){
         $this->color = $color;
         $this->value = $value;
