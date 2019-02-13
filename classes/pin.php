@@ -1,6 +1,7 @@
 <?php
 
 class Pin {
+    protected $symbol = "&#9673";
     protected $color= "";
     protected $value= "";
 
@@ -10,6 +11,11 @@ class Pin {
     public function __construct($color, $value){
         $this->color = $color;
         $this->value = $value;
+    }
+
+    public function __toString()
+    {
+        return $this->symbol;
     }
 };
 

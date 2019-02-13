@@ -35,6 +35,15 @@ if(isset($_POST['inputName'])){
         <h1>Benvenuto <b><?php echo ucfirst($nome); ?></b>!</h1>
         <button type="button" class="btn btn-primary btn-block">Fai il tentativo</button>
     </div>
+    <div class="well well-sm">
+        <?php
+        foreach($set as $pin){
+            ?>
+            <a href="#" style="color: <?php echo $pin->getColor(); ?>; font-size: 4em;"><?php echo $pin; ?></a>
+            <?php 
+        }
+        ?>
+    </div>
     <div>
         <table class="table">
             <thead>
@@ -65,7 +74,7 @@ if(isset($_POST['inputName'])){
                                             foreach($set as $pin){
                                                 ?>
                                                 <option style="color: <?php echo $pin->getColor() ?>">
-                                                    &#9673
+                                                    <?php echo $pin_B; ?>
                                                 </option>
                                             <?php
                                             };
