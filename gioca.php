@@ -66,9 +66,9 @@ if(isset($_POST['inputName'])){
                     <tr>
                         <th scope="row"><?php echo $l; ?></th>
                         <?php
-                            for($j = 0; $j < $width; $j++){
+                            for($j = 1; $j <= $width; $j++){
                                 ?>
-                                <td id="td_<?php echo $l . '_' . $j; ?>">
+                                <td id="td_<?php echo $l . '_' . $j; ?>" onclick="setTdActive('td_<?php echo $l . '_' . $j; ?>')">
                                    
                                 </td>
                                 <?php
@@ -92,8 +92,18 @@ if(isset($_POST['inputName'])){
 </html>
 
 <script>
-    function scriviPin(Pin){
-        var td = document.getElementById("td_1_0");
-        td.innerHTML = Pin;
+    var allTd = document.getElementsByClassName("borderTdActive");
+
+    function scriviPin(value){
+        allTd[0].innerHTML = value;
     }
+
+    function setTdActive(id){
+        for (let td of allTd) {
+            td.classList.remove("borderTdActive");
+        }
+        var tdActive = document.getElementById(id);
+        tdActive.classList.add("borderTdActive");
+    }
+
 </script>

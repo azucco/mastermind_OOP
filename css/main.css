@@ -5,3 +5,8 @@ body {
     padding: 15px;
     margin: auto;
 }
+
+.borderTdActive {
+    /*border: solid 3px black;*/
+    background-color: lightskyblue;
+}
