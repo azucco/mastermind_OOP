@@ -6,6 +6,11 @@ body {
     margin: auto;
 }
 
+.table {
+    font-size: 2em;
+    padding: 0em;
+}
+
 .borderTdActive {
     /*border: solid 3px black;*/
     background-color: lightskyblue;

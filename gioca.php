@@ -39,7 +39,7 @@ if(isset($_POST['inputName'])){
         <?php
         foreach($set as $pin){
             ?>
-            <a href="#" style="color: <?php echo $pin->getColor(); ?>; font-size: 4em;" onclick="scriviPin(<?php echo $pin->getValue(); ?>)"><?php echo $pin; ?></a>
+            <a href="#" style="color: <?php echo $pin->getColor(); ?>; font-size: 4em;" onclick="scriviPin('<?php echo $pin->__toString(); ?>', '<?php echo $pin->getColor(); ?>')"><?php echo $pin; ?></a>
             <?php 
         }
         ?>
@@ -94,7 +94,8 @@ if(isset($_POST['inputName'])){
 <script>
     var allTd = document.getElementsByClassName("borderTdActive");
 
-    function scriviPin(value){
+    function scriviPin(value, color){
+        allTd[0].setAttribute("style", "color:"+color+";")
         allTd[0].innerHTML = value;
     }
 
