@@ -10,10 +10,11 @@ if(isset($_POST['inputName'])){
     $pin_G = new Pin("green", 4);
     $pin_P = new Pin("purple", 5);
     $set = [$pin_R, $pin_B, $pin_Y, $pin_G, $pin_P];
-    $tavolo = new Tavolo(5, 10);
+    $tavolo = new Tavolo(5, 10, $set);
     $width = $tavolo->getWidth();
     $lenght = $tavolo->getLenght();
     $nome = $player->getName();
+    $combo = $tavolo->getCombo();
 }
 ?>
 
@@ -31,19 +32,36 @@ if(isset($_POST['inputName'])){
     <script src="main.js"></script>
 </head>
 <body class="text-center">
-    <div>
-        <h1>Benvenuto <b><?php echo ucfirst($nome); ?></b>!</h1>
-        <button type="button" class="btn btn-primary btn-block">Fai il tentativo</button>
-    </div>
-    <div class="well well-sm">
-        <?php
-        foreach($set as $pin){
+    <h1>Benvenuto <b><?php echo ucfirst($nome); ?></b>!</h1>
+    <div class="col-sm-6">
+        <br>
+        <div>
+            <button type="button" class="btn btn-primary btn-block">Fai il tentativo</button>
+        </div>
+        <div class="well well-sm">
+            <?php
+            foreach($set as $pin){
+                ?>
+                <a href="#" style="color: <?php echo $pin->getColor(); ?>; font-size: 2em;" onclick="scriviPin('<?php echo $pin->__toString(); ?>', '<?php echo $pin->getColor(); ?>')"><?php echo $pin; ?></a>
+                <?php 
+            }
             ?>
-            <a href="#" style="color: <?php echo $pin->getColor(); ?>; font-size: 4em;" onclick="scriviPin('<?php echo $pin->__toString(); ?>', '<?php echo $pin->getColor(); ?>')"><?php echo $pin; ?></a>
-            <?php 
-        }
-        ?>
+        </div>
     </div>
+    <div class="col-sm-6">
+    <br>
+    Combinazione
+    <div class="well well-sm">
+            <?php
+            foreach($combo as $pin){
+                ?>
+                <span style="color: <?php echo $pin->getColor(); ?>; font-size: 2em;"><?php echo $pin; ?></span>
+                <?php 
+            }
+            ?>
+        </div>
+    </div>
+   
     <div class="well well-sm">
         <table class="table">
             <thead>
@@ -53,6 +71,11 @@ if(isset($_POST['inputName'])){
                         for($n = 1; $n <= $width; $n++){
                             ?>
                             <th class="text-center" scope="col"><?php echo $n; ?></th>
+                            <?php
+                        }
+                        for($n = 1; $n <= $width; $n++){
+                            ?>
+                            <th class="text-center" scope="col"></th>
                             <?php
                         }
                         ?>
@@ -106,5 +129,4 @@ if(isset($_POST['inputName'])){
         var tdActive = document.getElementById(id);
         tdActive.classList.add("borderTdActive");
     }
-
 </script>
